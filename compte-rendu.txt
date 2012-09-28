@@ -17,4 +17,13 @@ i ne subit que les -- d'où au final, i=-5
 
 Exercice 2
 
+à l'appel de longjmp, la fonction cpt() qui a appellé setjmp est terminée.
+D'après la doc, "Le contexte de pile sera invalide si la fonction qui appelle setjmp() se termine."
+
+longjump retourne dans cpt() et applique la boucle de ++ à i, cependant à la fin 
+de cette fonction, le retour ne se fait pas là où le premier appel à cpt() s'est fait, mais à la ligne suivant le longjmp().
+
+
+Exercice 3
+
   

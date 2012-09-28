@@ -1,0 +1,14 @@
+Exercice 1
+Note : le static n'a pas d'effet.
+
+à la restitution du contexte, le contenu des variables i et j n'est pas réinitialisé
+(a-t'il été sauvegardé ?)
+
+Dans la première version :
+les boucles remettent j à 0
+et donc la variable i subit les -- et les ++ : au final i=0
+
+Dans la seconde version :
+les boucles ne réinitialise pas j à 0
+donc à la restituion de contexte, j=5 et la 2e boucle ne s'applique pas,
+i ne subit que les -- d'où au final, i=-5  

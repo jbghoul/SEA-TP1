@@ -11,7 +11,7 @@ LIBS    = -L$(LIBDIR) -l$(LIBNAME)
 ###------------------------------
 ### Main targets 
 ###------------------------------------------------------------
-BINARIES= main
+BINARIES= main exercice1
 
 all: $(BINARIES)
 
@@ -31,6 +31,7 @@ Makefile.depends:
 include Makefile.depends
 
 main: main.o $(LIBFILE)
+exercice1: exercice1.o $(LIBFILE)
 
 
 ###------------------------------

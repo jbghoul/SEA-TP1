@@ -2,7 +2,9 @@ Exercice 1
 Note : le static n'a pas d'effet.
 
 à la restitution du contexte, le contenu des variables i et j n'est pas réinitialisé
-(a-t'il été sauvegardé ?)
+setjump a l'effet d'un goto lorsqu'il est dans une même fonction.
+La sauvegarde de contexte porte sur le contexte de la fonction, il ne sauvegarde pas l'état des variables à un instant t.
+set jmp "sauvegarde le contexte de pile et d’environnement" 
 
 Dans la première version :
 les boucles remettent j à 0
@@ -11,4 +13,8 @@ et donc la variable i subit les -- et les ++ : au final i=0
 Dans la seconde version :
 les boucles ne réinitialise pas j à 0
 donc à la restituion de contexte, j=5 et la 2e boucle ne s'applique pas,
-i ne subit que les -- d'où au final, i=-5  
+i ne subit que les -- d'où au final, i=-5
+
+Exercice 2
+
+  

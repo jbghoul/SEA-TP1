@@ -3,7 +3,7 @@ LIBNAME=hw
 LIBFILE=$(ROOTDIR)/lib/lib$(LIBNAME).a
 
 CC      = gcc
-CFLAGS  = -Wall -ansi -pedantic -g -m32
+CFLAGS  = -Wall -pedantic -g -m32
 LIBDIR  = $(ROOTDIR)/lib
 INCDIR  = -I$(ROOTDIR)/include
 LIBS    = -L$(LIBDIR) -l$(LIBNAME)
@@ -11,7 +11,7 @@ LIBS    = -L$(LIBDIR) -l$(LIBNAME)
 ###------------------------------
 ### Main targets 
 ###------------------------------------------------------------
-BINARIES= main exercice1 exercice2 exercice3
+BINARIES= main exercice1 exercice2 exercice3 TestPile
 
 all: $(BINARIES)
 
@@ -31,7 +31,7 @@ Makefile.depends:
 include Makefile.depends
 
 main: main.o $(LIBFILE)
-exercice1: exercice1.o $(LIBFILE)
+
 
 
 ###------------------------------

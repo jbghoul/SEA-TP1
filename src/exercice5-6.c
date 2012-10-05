@@ -1,3 +1,4 @@
+ 
 #include <setjmp.h>
 #include <stdio.h>
 #include <assert.h>
@@ -12,20 +13,23 @@ unsigned int bp;
 
 static ctx_s contexte;
 
-typedef int (func_t)(int);
 
-int try(struct ctx_s *pctx, func_t *f, int arg);
+
+
+typedef void (func_t)(void*);
+
+int try(struct ctx_s *pctx, func_t *f, void* arg);
 
 int throw(struct ctx_s *pctx, int r);
 
 
 int trivial(int ret) {
-if(ret<0) {
-  throw(&contexte,ret); 
-}
-else {
   return ret;
 }
+
+void toto (void *i) {
+  int n = * ((int *)i);
+  throw(&contexte,n);
 }
 
 int
@@ -34,6 +38,7 @@ main(void)
 unsigned int x=0, y=0;
 
 int ret;
+int * nb;
 
 asm ("movl %%esp, %0" "\n\t" "movl %%ebp, %1"
   : "=r"(y),"=r"(x) 
@@ -42,8 +47,7 @@ asm ("movl %%esp, %0" "\n\t" "movl %%ebp, %1"
 
 printf("main \nbp: %ud \nsp: %ud\n",x,y);
 
-ret = try(&contexte, trivial, -5);
-
+try(&contexte,toto,);
 printf("f return %d\n", ret);
 
 
@@ -51,12 +55,13 @@ return 0;
 }
 
 
-int try(struct ctx_s *pctx, func_t *f, int arg) {
+int try(struct ctx_s *pctx, func_t *f, void * arg) {
 asm ("movl %%esp, %0" "\n\t" "movl %%ebp, %1"
   : "=r"(pctx->sp),"=r"(pctx->bp)
   );
 
-  return f(arg);
+  f(arg);
+  return 0;
 }
 
 int throw(struct ctx_s *pctx, int r) {

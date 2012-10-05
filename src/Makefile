@@ -11,7 +11,8 @@ LIBS    = -L$(LIBDIR) -l$(LIBNAME)
 ###------------------------------
 ### Main targets 
 ###------------------------------------------------------------
-BINARIES= main exercice1 exercice2 exercice3 TestPile exercice4
+BINARIES= main exercice1 exercice2 exercice3 TestPile exercice4 \
+exercice5-6
 
 all: $(BINARIES)
 

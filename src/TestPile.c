@@ -26,12 +26,16 @@ printf("banane \nbp: %ud \nsp: %ud\n",x,y);
 
 int toto(int fin) {
 unsigned int x=0, y=0;
+unsigned int* p = &x;
+
 asm ("movl %%esp, %0" "\n\t" "movl %%ebp, %1"
   : "=r"(y),"=r"(x) 
   :
   );
 
 printf("toto \nbp: %ud \nsp: %ud\n",x,y);
+
+printf("x : %ud\n", &p);
   if(fin) {
   return 0;
   }

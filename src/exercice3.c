@@ -7,19 +7,23 @@ static int
 mul(int depth)
 {
   int i;
-  if(depth==0) setjmp(buf);
+  if(depth==0) {
+    if(setjmp(buf)) {
+    return 0;
+    }
+  }
   switch (scanf("%d", &i)) {
   case EOF :
     return 1; /* neutral element */
   case 0 :
-/*    return mul(depth+1);*/ 
+   return mul(depth+1);
 /* erroneous read */
-    longjmp(buf,1);
   case 1 :
     if (i)
       return i * mul(depth+1);
     else
-    return 0;
+    /*return 0;*/
+    longjmp(buf,1);
   }
 }
 int
